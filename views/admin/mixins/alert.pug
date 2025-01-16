@@ -1,0 +1,17 @@
+mixin alert-success(time)
+    - if (messages.success)
+        .alert.alert-success(time=time)
+            span= messages.success
+            .close-alert
+                svg.size-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' width='16' height='16' stroke-width='1.5' stroke='currentColor')
+                    path(stroke-linecap='round' stroke-linejoin='round' d='M6 18 18 6M6 6l12 12')
+
+mixin alert-remove-success(time)
+    - if (messages.removeSuccess)
+        .alert.alert-success(time=time)
+            span= messages.removeSuccess
+            form(action="" method="post" class="undo")
+                div Khôi phục
+            .close-alert
+                svg.size-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' width='16' height='16' stroke-width='1.5' stroke='currentColor')
+                    path(stroke-linecap='round' stroke-linejoin='round' d='M6 18 18 6M6 6l12 12')

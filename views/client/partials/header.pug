@@ -1,0 +1,34 @@
+nav.navbar.navbar-expand-md.bg-dark.sticky-top.border-bottom(data-bs-theme='dark')
+  .container
+    a.navbar-brand.d-md-none(href='#')
+      svg.bi(width='24' height='24')
+        use(xlink:href='#aperture')
+      |       Aperture
+    button.navbar-toggler(type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas' aria-controls='offcanvas' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #offcanvas.offcanvas.offcanvas-end(tabindex='-1' aria-labelledby='offcanvasLabel')
+      .offcanvas-header
+        h5#offcanvasLabel.offcanvas-title Aperture
+        button.btn-close(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+      .offcanvas-body
+        ul.navbar-nav.flex-grow-1.justify-content-between
+          li.nav-item
+            a.nav-link(href='#')
+              svg.bi(width='24' height='24')
+                use(xlink:href='#aperture')
+          li.nav-item
+            a.nav-link(href='#') Tour
+          li.nav-item
+            a.nav-link(href='#') Product
+          li.nav-item
+            a.nav-link(href='#') Features
+          li.nav-item
+            a.nav-link(href='#') Enterprise
+          li.nav-item
+            a.nav-link(href='#') Support
+          li.nav-item
+            a.nav-link(href='#') Pricing
+          li.nav-item
+            a.nav-link(href='#')
+              svg.bi(width='24' height='24')
+                use(xlink:href='#cart')

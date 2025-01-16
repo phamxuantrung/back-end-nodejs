@@ -1,0 +1,127 @@
+extends ../../layouts/default.pug
+
+block content
+  section.section-products
+    .container
+      .row.justify-content-center.text-center
+        .col-md-8.col-lg-6
+          .header
+            h3 Featured Product
+            h2 Popular Products
+      .row
+        // Single Product
+        each product in products
+          .col-md-6.col-lg-4.col-xl-3
+            #product-1.single-product(onclick=`linkDetail("${product.slug}")`)
+              .part-1
+                .bg-product(style=`background: url("${product.thumbnail}") no-repeat center;`)
+                if product.discountPercentage
+                  span.discount #{product.discountPercentage}% off
+                ul
+                  li
+                    a(href='#')
+                      i.fas.fa-shopping-cart
+                  li
+                    a(href='#')
+                      i.fas.fa-heart
+                  li
+                    a(href='#')
+                      i.fas.fa-plus
+                  li
+                    a(href='#')
+                      i.fas.fa-expand
+              .part-2
+                h3.product-title= product.title
+                if product.discountPercentage
+                  h4.product-old-price #{product.currency}
+                h4.product-price #{product.discountPercentage ? product.discountCurrency : product.currency}
+
+
+        //- .col-md-6.col-lg-4.col-xl-3
+        //-   #product-1.single-product
+        //-     .part-1
+        //-       .bg-product(style='background: url("https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_7__1.jpg") no-repeat center;')
+        //-       ul
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-shopping-cart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-heart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-plus
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-expand
+        //-     .part-2
+        //-       h3.product-title Here Product Title
+        //-       h4.product-old-price $79.99
+        //-       h4.product-price $49.99
+        //- // Single Product
+        //- .col-md-6.col-lg-4.col-xl-3
+        //-   #product-2.single-product
+        //-     .part-1
+        //-       .bg-product(style='background: url("https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/5/4/54_1_20.jpg") no-repeat center;')
+        //-       span.discount 15% off
+        //-       ul
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-shopping-cart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-heart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-plus
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-expand
+        //-     .part-2
+        //-       h3.product-title Here Product Title
+        //-       h4.product-price $49.99
+        //- // Single Product
+        //- .col-md-6.col-lg-4.col-xl-3
+        //-   #product-3.single-product
+        //-     .part-1
+        //-       .bg-product(style='background: url("https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/may-anh-sony-zv-1_11.png") no-repeat center;')
+        //-       ul
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-shopping-cart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-heart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-plus
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-expand
+        //-     .part-2
+        //-       h3.product-title Here Product Title
+        //-       h4.product-old-price $79.99
+        //-       h4.product-price $49.99
+        //- // Single Product
+        //- .col-md-6.col-lg-4.col-xl-3
+        //-   #product-4.single-product
+        //-     .part-1
+        //-       .bg-product(style='background: url("https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/_/t_i_xu_ng_37_.png") no-repeat center;')
+        //-       span.new new
+        //-       ul
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-shopping-cart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-heart
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-plus
+        //-         li
+        //-           a(href='#')
+        //-             i.fas.fa-expand
+        //-     .part-2
+        //-       h3.product-title Here Product Title
+        //-       h4.product-price $49.99
+        

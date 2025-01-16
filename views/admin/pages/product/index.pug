@@ -1,0 +1,149 @@
+extends ../../layouts/default.pug
+
+block content
+  .app-content
+    .app-content-header
+      h1.app-content-headerText Products
+      button.mode-switch(title='Switch Theme')
+        svg.moon(fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' width='24' height='24' viewbox='0 0 24 24')
+          defs
+          path(d='M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z')
+      button.app-content-headerButton Add Product
+    .app-content-actions
+      input.search-bar(placeholder='Search...' type='text' value=`${keyword}`)
+      .app-content-actions-wrapper
+        .options-button-wrapper
+          button.action-button.options.jsOptions
+            svg.size-6(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewbox='0 0 24 24' stroke-width='1.5' stroke='currentColor')
+              path(stroke-linecap='round' stroke-linejoin='round' d='M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z')
+          .options-menu
+            div.change-multi-status-btn(data-status="active") All Active
+            div.change-multi-status-btn(data-status="disabled") All Disabled
+            div.remove-multi-product-btn(data-status="disabled") Remove All Product
+        .create-product-button-wrapper
+          a(href="/admin/product/create") 
+            button.action-button.create-product.jsCreateProduct
+              svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='#fff' viewbox='0 0 24 24' strokewidth='{1.5}' stroke='currentColor' classname='size-6')
+                path(strokelinecap='round' strokelinejoin='round' d='M12 4.5v15m7.5-7.5h-15')
+        .filter-button-wrapper
+          button.action-button.filter.jsFilter
+            span Filter
+            svg.feather.feather-filter(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              polygon(points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3')
+          .filter-menu
+            label Category
+            select
+              option All Categories
+              option Furniture
+              option Decoration
+              option Kitchen
+              option Bathroom
+            label Status
+            select.status
+              option(value="") All Status
+              option(value="active") Active
+              option(value="disabled") Disabled
+            .filter-menu-buttons
+              button.filter-button.reset
+                | Reset
+              button.filter-button.apply
+                | Apply
+        button.action-button.list.active(title='List View')
+          svg.feather.feather-list(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+            line(x1='8' y1='6' x2='21' y2='6')
+            line(x1='8' y1='12' x2='21' y2='12')
+            line(x1='8' y1='18' x2='21' y2='18')
+            line(x1='3' y1='6' x2='3.01' y2='6')
+            line(x1='3' y1='12' x2='3.01' y2='12')
+            line(x1='3' y1='18' x2='3.01' y2='18')
+        button.action-button.grid(title='Grid View')
+          svg.feather.feather-grid(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+            rect(x='3' y='3' width='7' height='7')
+            rect(x='14' y='3' width='7' height='7')
+            rect(x='14' y='14' width='7' height='7')
+            rect(x='3' y='14' width='7' height='7')
+    .products-area-wrapper.tableView
+      .products-header
+        input(type="checkbox", name="check-all-product" style="margin-left: 8px")
+        .product-cell.image
+          | Items
+          button.sort-button
+            svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 512 512')
+              path(fill='currentColor' d='M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z')
+        .product-cell.status-cell
+          | Status
+          button.sort-button
+            svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 512 512')
+              path(fill='currentColor' d='M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z')
+        .product-cell.sales
+          | Sales
+          button.sort-button
+            svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 512 512')
+              path(fill='currentColor' d='M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z')
+        .product-cell.stock
+          | Stock
+          button.sort-button
+            svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 512 512')
+              path(fill='currentColor' d='M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z')
+        .product-cell.price
+          | Price
+          button.sort-button
+            svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 512 512')
+              path(fill='currentColor' d='M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z')
+        .product-cell
+          | Actions
+      each product in products
+        .products-row
+          input(type="checkbox", name="check-product" style="margin-left: 8px" _id=product._id)
+          button.cell-more-button
+            svg.feather.feather-more-vertical(xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              circle(cx='12' cy='12' r='1')
+              circle(cx='12' cy='5' r='1')
+              circle(cx='12' cy='19' r='1')
+          .product-cell.image
+            img(src=`${product.thumbnail}` alt='product')
+            span= product.title
+          .product-cell.status-cell
+            span.cell-label Status:
+            if(product.status == "active")
+              span(class="status active", status=product.status, _id=product._id) Hoạt động
+            else 
+              span(class="status disabled", status=product.status, _id=product._id) Dừng hoạt động
+          .product-cell.sales
+            span.cell-label Sales:
+            | #{product.discountPercentage ? product.discountPercentage : 0}%
+          .product-cell.stock
+            span.cell-label Stock:
+            | #{product.stock}
+          .product-cell.price
+            span.cell-label Price:
+            | #{product.discountCurrency || product.currency}
+          .product-cell
+            a(href=`/admin/product/${product._id}`)
+             div.detail-btn Chi tiết
+            a(href=`/admin/product/update/${product._id}`)
+             div.update-btn Update
+            div.remove-btn(_id= product._id) Remove
+      if(pagination.totalPage > 1)    
+        nav(aria-label='Page navigation')
+          ul.pagination.justify-content-center.m-3
+            li(class=".page-control.previous" onclick="previousPage(1)")
+              a.page-link Previous
+            each i in pagination.renderPageItem()
+              li(class=`${(pagination.currentPage == i) ? "page-item active" : "page-item"}`)
+                a.page-link #{i}
+            li(class=".page-control.next" onclick=`nextPage(${pagination.totalPage})`)
+              a.page-link Next
+  form(action="", method="post", id="form-change-status" hidden)
+    input(name="status", type="text")
+    input(name="id", type="text")
+
+  form(action="", method="post", id="form-change-multi-status" hidden)
+    input(name="status", type="text")  
+    input(name="ids", type="text")
+
+  form(action="", method="post", id="form-remove-product" hidden) 
+    input(name="id", type="text")
+
+  form(action="", method="post", id="form-remove-multi-product" hidden)
+    input(name="ids", type="text")

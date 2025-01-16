@@ -1,0 +1,13 @@
+extends ../../layouts/default.pug
+
+block content
+    ul
+        li
+            img(src=`${product.thumbnail}`, alt="image")
+        li Tên sản phẩm: #{product.title}
+        li Mô tả: #{product.description}
+        li Giá: #{product.price}
+        li Giảm giá: #{product.discountPercentage || 0}%
+        li Số lượng kho: #{product.stock}
+        li Trạng thái: #{product.status}
+    style ul{ margin-top: 24px } img{ width: 100px } li:first-child{ list-style: none }
