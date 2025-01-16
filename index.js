@@ -30,11 +30,11 @@ require("dotenv").config();
 db.connectDB(process.env.MONGO_URL)
 
 // use pug
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // use static file
-app.use(express.static("./public"))
+app.use(express.static(`${__dirname}/public`))
 
 // Route
 routeClient(app);
